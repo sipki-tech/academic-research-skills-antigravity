@@ -202,9 +202,9 @@ Full protocol: `references/UPSTREAM_WORKFLOW.md`
 | `references/reinforcement_content.md` | Stage transitions |
 
 Also dispatches (load their entry files when activating):
-- `.agents/skills/deep-research.md` — Stage 1
-- `.agents/skills/academic-paper.md` — Stages 2, 4, 4', 5
-- `.agents/skills/academic-paper-reviewer.md` — Stages 3, 3'
+- `../deep-research/SKILL.md` — Stage 1
+- `../academic-paper/SKILL.md` — Stages 2, 4, 4', 5
+- `../academic-paper-reviewer/SKILL.md` — Stages 3, 3'
 
 ---
 
