@@ -1,0 +1,22 @@
+# Antigravity / Gemini local state
+.gemini/
+*.local.json
+mcp_config.json
+
+# Run artifacts (pipeline working dirs)
+production_artifacts/
+app_build/
+*.run/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python (vendored ARS scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
+.cache/

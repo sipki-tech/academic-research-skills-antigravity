@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/path/to/your/ars-workspace"
+      ]
+    },
+    "zotero": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mcp-community/zotero-mcp-server"
+      ],
+      "env": {
+        "ZOTERO_API_KEY": "<YOUR_ZOTERO_API_KEY>",
+        "ZOTERO_USER_ID": "<YOUR_ZOTERO_USER_ID>"
+      }
+    },
+    "web-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "<YOUR_BRAVE_SEARCH_API_KEY>"
+      }
+    }
+  }
+}
