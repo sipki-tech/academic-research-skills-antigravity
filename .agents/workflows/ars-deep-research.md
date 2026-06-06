@@ -6,7 +6,7 @@ description: Dispatch the deep-research team for investigation, literature revie
 
 This workflow dispatches the `deep-research` 14-agent team directly, without the full pipeline overhead. Use it when the user wants research findings without immediately writing a paper, or when explicitly invoked as `/ars-deep-research [mode]`.
 
-**Before starting:** load `.agents/skills/deep-research.md` and `/AGENTS.md`. Confirm mode before dispatching.
+**Before starting:** load `skills/deep-research/SKILL.md` and `/AGENTS.md`. Confirm mode before dispatching.
 
 ---
 
@@ -40,7 +40,7 @@ Confirm the selected mode and topic with the user before proceeding.
 - Produce 2–3 sub-questions.
 - Output: **RQ Brief**.
 
-Load `ars/deep-research/agents/research_question_agent.md` for the full protocol.
+Load `skills/deep-research/agents/research_question_agent.md` for the full protocol.
 
 **Act as @research-architect** and execute the methodology-design protocol:
 - Select research paradigm (positivist / interpretivist / pragmatist).
@@ -49,14 +49,14 @@ Load `ars/deep-research/agents/research_question_agent.md` for the full protocol
 - Build analytical framework and validity criteria.
 - Output: **Methodology Blueprint**.
 
-Load `ars/deep-research/agents/research_architect_agent.md` for the full protocol.
+Load `skills/deep-research/agents/research_architect_agent.md` for the full protocol.
 
 **Act as @devils-advocate-research** — Checkpoint 1:
 - Assess: Is the RQ clear and answerable? Is the method appropriate? Is scope too broad or narrow?
 - Verdict: PASS / REVISE (with specific feedback).
 - ⚠️ IRON RULE: CRITICAL severity issues block progression; they are not softened or dropped.
 
-Load `ars/deep-research/agents/devils_advocate_agent.md`.
+Load `skills/deep-research/agents/devils_advocate_agent.md`.
 
 **[SOCRATIC MODE ONLY]** Instead of the above sequence, act as @socratic-mentor-research and run the 5-layer Socratic dialogue:
 - Layer 1: Clarification → Layer 2: Assumption Probing → Layer 3: Evidence/Reasoning → Layer 4: Viewpoint/Perspective → Layer 5: Implication/Consequence.
@@ -65,7 +65,7 @@ Load `ars/deep-research/agents/devils_advocate_agent.md`.
 - End condition: user has a concrete, answerable RQ AND a preliminary methodology direction.
 - Output: **INSIGHT Collection + Research Plan Summary**.
 
-Load `ars/deep-research/references/socratic_mode_protocol.md`.
+Load `skills/deep-research/references/socratic_mode_protocol.md`.
 
 ---
 
@@ -83,7 +83,7 @@ Load `ars/deep-research/references/socratic_mode_protocol.md`.
 - Corpus-first when a user library is supplied.
 - Output: **Source Corpus + Annotated Bibliography**.
 
-Load `ars/deep-research/agents/bibliography_agent.md`.
+Load `skills/deep-research/agents/bibliography_agent.md`.
 
 **Act as @source-verification** and grade sources:
 - Apply evidence hierarchy (Level I–VII).
@@ -91,13 +91,13 @@ Load `ars/deep-research/agents/bibliography_agent.md`.
 - Flag conflicts of interest and currency issues.
 - Output: **Verified & Graded Source Matrix**.
 
-Load `ars/deep-research/agents/source_verification_agent.md`.
+Load `skills/deep-research/agents/source_verification_agent.md`.
 
 **Act as @timeline-extraction** (all modes):
 - Extract per-source temporal facts and citation provenance.
 - Output: **Temporal-facts + Citation-provenance sidecars**.
 
-Load `ars/deep-research/agents/timeline_extraction_agent.md`.
+Load `skills/deep-research/agents/timeline_extraction_agent.md`.
 
 **[SYSTEMATIC-REVIEW MODE ONLY]** Act as @risk-of-bias:
 - Assess each included study using RoB 2 (RCTs) or ROBINS-I (non-randomized).
@@ -105,7 +105,7 @@ Load `ars/deep-research/agents/timeline_extraction_agent.md`.
 - Traffic-light visualization.
 - Output: **RoB Assessment Table**.
 
-Load `ars/deep-research/agents/risk_of_bias_agent.md`.
+Load `skills/deep-research/agents/risk_of_bias_agent.md`.
 
 ---
 
@@ -119,7 +119,7 @@ Load `ars/deep-research/agents/risk_of_bias_agent.md`.
 - Three-Layer Citation Emission (`<!--ref:slug-->` + `<!--anchor:kind:value-->`).
 - Output: **Synthesis Report + Gap Map + INSIGHT collection**.
 
-Load `ars/deep-research/agents/synthesis_agent.md`.
+Load `skills/deep-research/agents/synthesis_agent.md`.
 
 **[SYSTEMATIC-REVIEW MODE ONLY]** Act as @meta-analysis:
 - Design and execute quantitative synthesis.
@@ -127,7 +127,7 @@ Load `ars/deep-research/agents/synthesis_agent.md`.
 - Emit `[REQUIRES CLARIFICATION]` for any absent statistic — never infer.
 - Output: **Forest-plot data + Heterogeneity table + GRADE table**.
 
-Load `ars/deep-research/agents/meta_analysis_agent.md`.
+Load `skills/deep-research/agents/meta_analysis_agent.md`.
 
 **Act as @devils-advocate-research** — Checkpoint 2:
 - Cherry-picking check, confirmation bias detection, logic chain validation, alternative explanations.
@@ -144,7 +144,7 @@ Load `ars/deep-research/agents/meta_analysis_agent.md`.
 - If a Style Profile is available from `academic-paper` intake, apply as soft guide (discipline conventions take priority).
 - Output: **Full APA 7.0 Research Report Draft**.
 
-Load `ars/deep-research/agents/report_compiler_agent.md`.
+Load `skills/deep-research/agents/report_compiler_agent.md`.
 
 **[QUICK MODE]:** Phase 4 produces a **Research Brief** (500–1 500 words) instead of the full report.
 
@@ -156,14 +156,14 @@ Load `ars/deep-research/agents/report_compiler_agent.md`.
 - Assess originality, methodological rigor, evidence sufficiency, argument coherence, writing quality.
 - Verdict: Accept / Minor Revision / Major Revision / Reject.
 
-Load `ars/deep-research/agents/editor_in_chief_agent.md`.
+Load `skills/deep-research/agents/editor_in_chief_agent.md`.
 
 **Act as @ethics-review**:
 - Check AI disclosure compliance, attribution integrity, dual-use screening, fair representation.
 - Verdict: CLEARED / CONDITIONAL / BLOCKED.
 - ⚠️ IRON RULE: Ethics Review stops the pipeline once on Critical integrity concerns. Overridable with recorded reasoning. Subject matter alone never blocks.
 
-Load `ars/deep-research/agents/ethics_review_agent.md`.
+Load `skills/deep-research/agents/ethics_review_agent.md`.
 
 **Act as @devils-advocate-research** — Checkpoint 3 (final vulnerability scan):
 - Strongest counter-argument test, "So what?" significance check.
@@ -185,7 +185,7 @@ Load `ars/deep-research/agents/ethics_review_agent.md`.
 - Produce a monitoring plan: Google Scholar alerts, PubMed alerts, RSS feeds, Retraction Watch cadence, citation tracking.
 - Output: **Post-Research Monitoring Plan**.
 
-Load `ars/deep-research/agents/monitoring_agent.md`.
+Load `skills/deep-research/agents/monitoring_agent.md`.
 
 ---
 

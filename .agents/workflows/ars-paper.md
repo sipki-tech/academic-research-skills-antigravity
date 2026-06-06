@@ -6,7 +6,7 @@ description: Dispatch the academic-paper team to write, outline, revise, or form
 
 This workflow dispatches the `academic-paper` 12-agent team directly. Use it when the user wants to write or revise a paper, check citations, generate an abstract, or convert formats — without the full pipeline overhead.
 
-**Before starting:** load `.agents/skills/academic-paper.md` and `/AGENTS.md`. Confirm mode before dispatching.
+**Before starting:** load `skills/academic-paper/SKILL.md` and `/AGENTS.md`. Confirm mode before dispatching.
 
 ---
 
@@ -54,7 +54,7 @@ Output: **Paper Configuration Record**.
 
 **[CHECKPOINT]:** Present the Paper Configuration Record to the user. Wait for explicit confirmation before Phase 1. User may request adjustments.
 
-Load `ars/academic-paper/agents/intake_agent.md`.
+Load `skills/academic-paper/agents/intake_agent.md`.
 
 ---
 
@@ -66,7 +66,7 @@ Load `ars/academic-paper/agents/intake_agent.md`.
 - Corpus-first when a user library is supplied.
 - Output: **Search Strategy + Source Corpus**.
 
-Load `ars/academic-paper/agents/literature_strategist_agent.md`.
+Load `skills/academic-paper/agents/literature_strategist_agent.md`.
 
 *(Skip Phase 1 if user supplies own sources or if a deep-research bibliography is available.)*
 
@@ -80,7 +80,7 @@ Load `ars/academic-paper/agents/literature_strategist_agent.md`.
 - Map every major claim to its evidence source.
 - Output: **Paper Outline + Evidence Map**.
 
-Load `ars/academic-paper/agents/structure_architect_agent.md`.
+Load `skills/academic-paper/agents/structure_architect_agent.md`.
 
 **[CHECKPOINT]:** Present the outline to the user. Wait for approval. User may request restructuring before Phase 3.
 
@@ -93,14 +93,14 @@ Load `ars/academic-paper/agents/structure_architect_agent.md`.
 - Check for circularity, straw men, over-inference.
 - Output: **Argument Blueprint**.
 
-Load `ars/academic-paper/agents/argument_builder_agent.md`.
+Load `skills/academic-paper/agents/argument_builder_agent.md`.
 
 **[PLAN MODE ONLY]** Instead of Phases 1–3 above, act as @socratic-mentor-paper:
 - Chapter-by-chapter Socratic dialogue (4 question types; 4-signal convergence criteria).
 - Build Paper Blueprint and INSIGHT collection.
 - Then act as @structure-architect → @argument-builder for stress test.
 
-Load `ars/academic-paper/agents/socratic_mentor_agent.md`.
+Load `skills/academic-paper/agents/socratic_mentor_agent.md`.
 
 ---
 
@@ -113,8 +113,8 @@ Load `ars/academic-paper/agents/socratic_mentor_agent.md`.
 - Produce `## Acceptance Criteria Paraphrase` + terminal `[PRE-COMMITMENT-ACKNOWLEDGED]`.
 - Lint checks (3): required sections in order; paraphrase paragraph count ≥ minimum dimensions; content references contract + metadata only.
 
-Load `ars/academic-paper/agents/draft_writer_agent.md` (Phase 4a sub-section).
-Load `ars/shared/contracts/writer/full.json`.
+Load `skills/academic-paper/agents/draft_writer_agent.md` (Phase 4a sub-section).
+Load `skills/_shared/contracts/writer/full.json`.
 
 ### Phase 4b — Writer Paper-Visible Drafting + Self-Scoring
 
@@ -130,7 +130,7 @@ Load `ars/shared/contracts/writer/full.json`.
 - Parse paper data; generate publication-quality figure code (Python matplotlib or R ggplot2).
 - APA 7.0 formatting, colorblind-safe palettes, LaTeX `\includegraphics` integration.
 
-Load `ars/academic-paper/agents/visualization_agent.md`.
+Load `skills/academic-paper/agents/visualization_agent.md`.
 
 On Phase 4 lint failure: retry once with lint gap hint; second failure → `[GENERATOR-PHASE-ABORTED: role=writer, …]` → stop and route to user intervention.
 
@@ -147,7 +147,7 @@ On Phase 4 lint failure: retry once with lint gap hint; second failure → `[GEN
 - Flag `lookup_verified == false` in the Citation Audit Report.
 - Output: **Citation Audit Report**.
 
-Load `ars/academic-paper/agents/citation_compliance_agent.md`.
+Load `skills/academic-paper/agents/citation_compliance_agent.md`.
 
 ### Phase 5b — Bilingual Abstract (parallel with 5a)
 
@@ -158,7 +158,7 @@ Load `ars/academic-paper/agents/citation_compliance_agent.md`.
 - Verify both abstracts cover the same key points in the same order.
 - Output: **Bilingual Abstract + Keywords**.
 
-Load `ars/academic-paper/agents/abstract_bilingual_agent.md`.
+Load `skills/academic-paper/agents/abstract_bilingual_agent.md`.
 
 ---
 
@@ -171,8 +171,8 @@ Load `ars/academic-paper/agents/abstract_bilingual_agent.md`.
 - Produce `## Contract Paraphrase` + `## Scoring Plan (D1–D5)` + `[PRE-COMMITMENT-ACKNOWLEDGED]`.
 - Lint checks (5).
 
-Load `ars/academic-paper/agents/peer_reviewer_agent.md` (Phase 6a sub-section).
-Load `ars/shared/contracts/evaluator/full.json`.
+Load `skills/academic-paper/agents/peer_reviewer_agent.md` (Phase 6a sub-section).
+Load `skills/_shared/contracts/evaluator/full.json`.
 
 ### Phase 6b — Evaluator Paper-Visible Scoring + Decision
 
@@ -198,7 +198,7 @@ On Phase 6 lint failure: retry once; second failure → `[GENERATOR-PHASE-ABORTE
 - Mandatory inclusions: Data Availability Statement, Ethics Declaration, Author Contributions (CRediT), Conflict of Interest Statement, Funding Acknowledgment, AI Disclosure Statement.
 - `@formatter` never re-evaluates policy logic; stamp only.
 
-Load `ars/academic-paper/agents/formatter_agent.md`.
+Load `skills/academic-paper/agents/formatter_agent.md`.
 
 **[DISCLOSURE MODE ONLY]** Act as @formatter for venue-specific AI-usage disclosure:
 - Generate the appropriate disclosure paragraph(s) for the target venue.

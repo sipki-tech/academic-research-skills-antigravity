@@ -8,7 +8,7 @@
 
 ## Attribution
 
-This repository is a port of **[Academic Research Skills (ARS)](https://github.com/Imbad0202/academic-research-skills)** by **Cheng-I Wu**, licensed under [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/). The original suite is preserved verbatim under `.agents/skills/ars/` (read-only vendored source). This Antigravity edition re-architects the agent coordination layer, optimizes prompting for Gemini, and wires the pipeline to live MCP tools — without modifying the upstream agent protocols.
+This repository is a port of **[Academic Research Skills (ARS)](https://github.com/Imbad0202/academic-research-skills)** by **Cheng-I Wu**, licensed under [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/). The original suite is bundled verbatim inside each `skills/<name>/` directory (agents/, references/, templates/) and `skills/_shared/` (read-only). This Antigravity edition re-architects the agent coordination layer, optimizes prompting for Gemini, and wires the pipeline to live MCP tools — without modifying the upstream agent protocols.
 
 ---
 
@@ -35,35 +35,38 @@ Four Anti-Confabulation Guardrails (G1–G4) are added specifically for Gemini's
 
 ## Repo Layout
 
+The repository serves two install paths from one tree: the **`skills/` directory** is discovered by `skills.sh` / `npx skills` installers (Agent Skills spec — each skill validates with `skills-ref`), and the **`.agents/` + `.agent/` + `AGENTS.md`** layout is read natively by Antigravity when the repo is opened as a workspace.
+
 ```
 .
-├── AGENTS.md                         Primary context manifest — loaded by Antigravity on every conversation
-├── GEMINI.md                         Antigravity pointer to AGENTS.md
+├── AGENTS.md                         Primary context manifest — read by Antigravity on every conversation
+├── GEMINI.md                         Gemini pointer to AGENTS.md (@AGENTS.md)
 ├── mcp_config.example.json           MCP server configuration template
 ├── LICENSE                           CC-BY-NC-4.0 (inherited from upstream ARS)
 ├── README.md                         This file
 │
-├── .agents/
+├── skills/                           ← installable units (Agent Skills spec; `npx skills` discovers these)
+│   ├── deep-research/
+│   │   ├── SKILL.md                  Gemini-optimized entry (frontmatter: name/description/license)
+│   │   ├── agents/                   14 specialist agent prompts (upstream ARS, bundled)
+│   │   ├── references/               protocols + UPSTREAM_WORKFLOW.md (full original SKILL.md)
+│   │   └── templates/                output templates
+│   ├── academic-paper/               (SKILL.md + 12 agents + references + templates)
+│   ├── academic-paper-reviewer/      (SKILL.md + 7 agents + references + templates)
+│   ├── academic-pipeline/            (SKILL.md + 5 agents + references + templates)
+│   └── _shared/                      shared agents, contracts, schemas, compliance protocols
+│
+├── .agents/                          ← native Antigravity workspace layer
 │   ├── agents.md                     38 persona definitions (Goal / Traits / Constraints / Phase / Deliverable)
-│   ├── skills/
-│   │   ├── deep-research.md          Skill entry — lazy-loading router for the 14-agent research team
-│   │   ├── academic-paper.md         Skill entry — lazy-loading router for the 12-agent paper team
-│   │   ├── academic-paper-reviewer.md Skill entry — lazy-loading router for the 7-agent review panel
-│   │   ├── academic-pipeline.md      Skill entry — lazy-loading router for the 5-agent pipeline orchestrator
-│   │   ├── orchestration.md          Full decomposition / delegation / conflict-resolution contract
-│   │   ├── mcp-integration.md        MCP tool contracts (Zotero, filesystem, web-search/Scholar)
-│   │   └── ars/                      Vendored upstream ARS source (read-only)
-│   │       ├── deep-research/        Original ARS deep-research (WORKFLOW.md) + agents/ + references/
-│   │       ├── academic-paper/       Original ARS academic-paper (WORKFLOW.md) + agents/ + references/
-│   │       ├── academic-paper-reviewer/ Original ARS reviewer (WORKFLOW.md) + agents/ + references/
-│   │       ├── academic-pipeline/    Original ARS pipeline (WORKFLOW.md) + agents/ + references/
-│   │       └── shared/               Shared agents, contracts, schemas, compliance protocols
-│   └── workflows/
-│       ├── ars-full.md               /ars-full — full pipeline slash command
-│       ├── ars-deep-research.md      /ars-deep-research — research team only
-│       ├── ars-paper.md              /ars-paper — paper team only
-│       ├── ars-reviewer.md           /ars-reviewer — review panel only
-│       └── ars-revision-coach.md     /ars-revision-coach — parse reviewer comments → roadmap
+│   ├── workflows/
+│   │   ├── ars-full.md               /ars-full — full pipeline slash command
+│   │   ├── ars-deep-research.md      /ars-deep-research — research team only
+│   │   ├── ars-paper.md              /ars-paper — paper team only
+│   │   ├── ars-reviewer.md           /ars-reviewer — review panel only
+│   │   └── ars-revision-coach.md     /ars-revision-coach — parse reviewer comments → roadmap
+│   └── docs/
+│       ├── orchestration.md          Decomposition / delegation / conflict-resolution contract
+│       └── mcp-integration.md        MCP tool contracts (Zotero, filesystem, web-search/Scholar)
 │
 └── .agent/
     └── rules/
@@ -71,11 +74,43 @@ Four Anti-Confabulation Guardrails (G1–G4) are added specifically for Gemini's
         └── output-language.md        Language selection rules (Russian default for chat)
 ```
 
+> The workflow and persona files reference each skill's bundled `agents/` / `references/` / `templates/` directly, so the
+> `skills/` tree is the single source of truth — both install paths load the same content with no duplication or drift.
+
 ---
 
 ## Install
 
-1. **Open this repository as a workspace in Antigravity.** Antigravity auto-reads `AGENTS.md` and `.agents/` on every conversation — no additional setup required for the agent layer.
+### Option A — `npx skills` (recommended; per-project or global)
+
+Install one or all skills into any Antigravity project (or globally):
+
+```bash
+# Install all four skills into the current project's .agent/skills (or ~/.agent/skills with -g)
+npx skills add github.com/sipki-tech/academic-research-skills-antigravity
+
+# Install a single skill
+npx skills add github.com/sipki-tech/academic-research-skills-antigravity/tree/main/skills/academic-paper-reviewer
+
+# List what's available without installing
+npx skills add github.com/sipki-tech/academic-research-skills-antigravity --list
+```
+
+The installer copies the chosen `skills/<name>/` directories into the agent's skills folder. Each skill validates against the
+[Agent Skills spec](https://agentskills.io/specification) (`skills-ref validate ./skills/<name>`). After install, also copy the
+slash-command workflows and rules so the orchestrators and Iron Rules are active:
+
+```bash
+# from a clone of this repo, into your project (or ~/.gemini/antigravity/ for global workflows)
+cp -r .agents/workflows/*  your-project/.agent/workflows/
+cp -r .agent/rules/*       your-project/.agent/rules/
+cp    AGENTS.md            your-project/AGENTS.md
+```
+
+### Option B — open as a workspace (zero setup)
+
+1. **Clone and open this repository as a workspace in Antigravity.** It auto-reads `AGENTS.md`, `.agents/`, and `.agent/` on every
+   conversation — the full agent layer, slash commands, and skills are active with no install step.
 
 2. **Configure MCP tools (optional but recommended for full capability):**
    ```bash
@@ -85,7 +120,7 @@ Four Anti-Confabulation Guardrails (G1–G4) are added specifically for Gemini's
    - `<YOUR_ZOTERO_API_KEY>` and `<YOUR_ZOTERO_USER_ID>` — from [zotero.org/settings/keys](https://www.zotero.org/settings/keys)
    - `<YOUR_BRAVE_SEARCH_API_KEY>` — from [brave.com/search/api](https://brave.com/search/api/)
 
-   See `.agents/skills/mcp-integration.md` for full tool contracts and degradation behavior. MCP tools are optional — the pipeline runs without them, but citation-existence verification (Guardrail G3) and reference-library pull will be unavailable.
+   See `.agents/docs/mcp-integration.md` for full tool contracts and degradation behavior. MCP tools are optional — the pipeline runs without them, but citation-existence verification (Guardrail G3) and reference-library pull will be unavailable.
 
 3. **Restart Antigravity** to pick up the MCP configuration.
 

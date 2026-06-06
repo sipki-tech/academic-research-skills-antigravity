@@ -1,10 +1,21 @@
+---
+name: academic-paper-reviewer
+description: "Multi-perspective academic peer-review simulator. 7 agents dynamically configured to the paper's field evaluate from four non-overlapping perspectives — methodology, domain expertise, cross-disciplinary, and devil's-advocate argument challenge — then converge on an Editorial Decision Letter and Revision Roadmap. Reviewer independence and devil's-advocate CRITICAL blocking are enforced. Use for: peer review, review my paper, referee report, editorial decision, reviewer calibration, re-review after revision."
+license: CC-BY-NC-4.0
+metadata:
+  upstream: "academic-research-skills"
+  author: "Cheng-I Wu"
+  port: "antigravity"
+---
+
+
 # Skill: Academic Paper Reviewer
 
 ## Objective
 
 Simulate a complete international journal peer-review process. Seven specialist agents — dynamically configured by @field-analyst — evaluate the manuscript from four non-overlapping perspectives (methodology, domain expertise, cross-disciplinary, and core-argument challenge), then converge into a structured Editorial Decision Letter and Revision Roadmap. Reviewer independence is an Iron Rule: no reviewer sees another's draft before completing its own.
 
-Source of truth: `ars/academic-paper-reviewer/WORKFLOW.md` (v1.10.0). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent files only for the active phase.
+Source of truth: `references/UPSTREAM_WORKFLOW.md` (v1.10.0). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent files only for the active phase.
 
 ---
 
@@ -109,29 +120,29 @@ Rules 1–8 apply universally. For this skill, Rules 2, 3, 4, 5, and 6 are espec
 
 ## Source of Truth
 
-Full protocol: `ars/academic-paper-reviewer/WORKFLOW.md`
+Full protocol: `references/UPSTREAM_WORKFLOW.md`
 
 **Load lazily — read only what the active phase needs:**
 
 | Artifact | When to load |
 |---|---|
-| `ars/academic-paper-reviewer/agents/field_analyst_agent.md` | Phase 0 |
-| `ars/academic-paper-reviewer/agents/eic_agent.md` | Phases 1 & 2.5 |
-| `ars/academic-paper-reviewer/agents/methodology_reviewer_agent.md` | Phase 1 |
-| `ars/academic-paper-reviewer/agents/domain_reviewer_agent.md` | Phase 1 |
-| `ars/academic-paper-reviewer/agents/perspective_reviewer_agent.md` | Phase 1 |
-| `ars/academic-paper-reviewer/agents/devils_advocate_reviewer_agent.md` | Phase 1 |
-| `ars/academic-paper-reviewer/agents/editorial_synthesizer_agent.md` | Phase 2 |
-| `ars/academic-paper-reviewer/references/sprint_contract_protocol.md` | full & methodology-focus modes |
-| `ars/academic-paper-reviewer/references/re_review_mode_protocol.md` | re-review mode |
-| `ars/academic-paper-reviewer/references/guided_mode_protocol.md` | guided mode |
-| `ars/academic-paper-reviewer/references/calibration_mode_protocol.md` | calibration mode |
-| `ars/academic-paper-reviewer/references/editorial_decision_standards.md` | Phase 2 |
-| `ars/academic-paper-reviewer/references/quality_rubrics.md` | Phase 1 scoring |
-| `ars/academic-paper-reviewer/templates/peer_review_report_template.md` | Phase 1 output format |
-| `ars/academic-paper-reviewer/templates/editorial_decision_template.md` | Phase 2 output format |
-| `ars/shared/contracts/reviewer/full.json` | full mode Sprint Contract |
-| `ars/shared/contracts/reviewer/methodology_focus.json` | methodology-focus Sprint Contract |
+| `agents/field_analyst_agent.md` | Phase 0 |
+| `agents/eic_agent.md` | Phases 1 & 2.5 |
+| `agents/methodology_reviewer_agent.md` | Phase 1 |
+| `agents/domain_reviewer_agent.md` | Phase 1 |
+| `agents/perspective_reviewer_agent.md` | Phase 1 |
+| `agents/devils_advocate_reviewer_agent.md` | Phase 1 |
+| `agents/editorial_synthesizer_agent.md` | Phase 2 |
+| `references/sprint_contract_protocol.md` | full & methodology-focus modes |
+| `references/re_review_mode_protocol.md` | re-review mode |
+| `references/guided_mode_protocol.md` | guided mode |
+| `references/calibration_mode_protocol.md` | calibration mode |
+| `references/editorial_decision_standards.md` | Phase 2 |
+| `references/quality_rubrics.md` | Phase 1 scoring |
+| `templates/peer_review_report_template.md` | Phase 1 output format |
+| `templates/editorial_decision_template.md` | Phase 2 output format |
+| `../_shared/contracts/reviewer/full.json` | full mode Sprint Contract |
+| `../_shared/contracts/reviewer/methodology_focus.json` | methodology-focus Sprint Contract |
 
 **Related skills:**
 - Upstream → `academic-paper` (receives completed paper draft; Stage 3 in pipeline)

@@ -1,10 +1,21 @@
+---
+name: academic-paper
+description: "Academic paper writing engine. Turn a research foundation into a journal-ready manuscript. 12 agents: configuration interview, literature strategy, structure architecture, argument construction, section drafting, citation compliance, bilingual abstract, simulated peer review with revision loops, final formatting (LaTeX / DOCX / PDF / Markdown). Use for: write a paper, paper outline, abstract, paper revision, citation formatting, AI-usage disclosure, format conversion, plan my paper."
+license: CC-BY-NC-4.0
+metadata:
+  upstream: "academic-research-skills"
+  author: "Cheng-I Wu"
+  port: "antigravity"
+---
+
+
 # Skill: Academic Paper
 
 ## Objective
 
 Turn a research foundation into a journal-ready manuscript. A 12-agent pipeline covering all disciplines: configuration interview, literature strategy, structural architecture, argument construction, section-by-section drafting, parallel citation compliance and bilingual abstract, peer review with revision loops, and final formatting to LaTeX / DOCX / PDF / Markdown. Supports Style Calibration from past papers and a Writing Quality Check against AI-typical patterns.
 
-Source of truth: `ars/academic-paper/WORKFLOW.md` (v3.2.0). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent and reference files only for the active phase.
+Source of truth: `references/UPSTREAM_WORKFLOW.md` (v3.2.0). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent and reference files only for the active phase.
 
 ---
 
@@ -113,7 +124,7 @@ Phase 7: FORMAT        → @formatter              → Final Output Package
 - **Three-Layer Citation Emission** (@draft-writer, @report-compiler): `<!--ref:slug-->` + `<!--anchor:kind:value-->` inline markers.
 - **Anti-leakage** (@draft-writer): session materials take priority over model memory.
 - **STAMP-ONLY** (@formatter): never re-evaluates policy logic; two-gate protocol only.
-- **Writing quality:** flag AI-typical overused terms, em dash abuse, throat-clearing openers, uniform paragraph lengths (see `ars/academic-paper/references/writing_quality_check.md`).
+- **Writing quality:** flag AI-typical overused terms, em dash abuse, throat-clearing openers, uniform paragraph lengths (see `references/writing_quality_check.md`).
 - **Mandatory inclusions:** every paper must include Data Availability Statement, Ethics Declaration, Author Contributions (CRediT), Conflict of Interest Statement, Funding Acknowledgment, AI disclosure statement.
 - **Citation completeness:** zero orphans — in-text citations ↔ reference list must perfectly match; DOI mandatory for all sources that have one.
 
@@ -121,30 +132,30 @@ Phase 7: FORMAT        → @formatter              → Final Output Package
 
 ## Source of Truth
 
-Full protocol: `ars/academic-paper/WORKFLOW.md`
+Full protocol: `references/UPSTREAM_WORKFLOW.md`
 
 **Load lazily — read only what the active phase needs:**
 
 | Artifact | When to load |
 |---|---|
-| `ars/academic-paper/agents/intake_agent.md` | Phase 0 |
-| `ars/academic-paper/agents/literature_strategist_agent.md` | Phase 1 |
-| `ars/academic-paper/agents/structure_architect_agent.md` | Phase 2 |
-| `ars/academic-paper/agents/argument_builder_agent.md` | Phase 3 |
-| `ars/academic-paper/agents/draft_writer_agent.md` | Phases 4a / 4b |
-| `ars/academic-paper/agents/citation_compliance_agent.md` | Phase 5a |
-| `ars/academic-paper/agents/abstract_bilingual_agent.md` | Phase 5b |
-| `ars/academic-paper/agents/peer_reviewer_agent.md` | Phases 6a / 6b |
-| `ars/academic-paper/agents/formatter_agent.md` | Phase 7 |
-| `ars/academic-paper/agents/socratic_mentor_agent.md` | plan mode |
-| `ars/academic-paper/agents/visualization_agent.md` | Phase 4/7 (quantitative papers) |
-| `ars/academic-paper/agents/revision_coach_agent.md` | revision-coach mode |
-| `ars/academic-paper/references/writing_quality_check.md` | Phase 4b self-review |
-| `ars/academic-paper/references/failure_paths.md` | All phases (error recovery) |
-| `ars/academic-paper/references/plan_mode_protocol.md` | plan mode |
-| `ars/shared/sprint_contract.schema.json` | full mode Phase 4/6 |
-| `ars/shared/contracts/writer/full.json` | Phase 4 |
-| `ars/shared/contracts/evaluator/full.json` | Phase 6 |
+| `agents/intake_agent.md` | Phase 0 |
+| `agents/literature_strategist_agent.md` | Phase 1 |
+| `agents/structure_architect_agent.md` | Phase 2 |
+| `agents/argument_builder_agent.md` | Phase 3 |
+| `agents/draft_writer_agent.md` | Phases 4a / 4b |
+| `agents/citation_compliance_agent.md` | Phase 5a |
+| `agents/abstract_bilingual_agent.md` | Phase 5b |
+| `agents/peer_reviewer_agent.md` | Phases 6a / 6b |
+| `agents/formatter_agent.md` | Phase 7 |
+| `agents/socratic_mentor_agent.md` | plan mode |
+| `agents/visualization_agent.md` | Phase 4/7 (quantitative papers) |
+| `agents/revision_coach_agent.md` | revision-coach mode |
+| `references/writing_quality_check.md` | Phase 4b self-review |
+| `references/failure_paths.md` | All phases (error recovery) |
+| `references/plan_mode_protocol.md` | plan mode |
+| `../_shared/sprint_contract.schema.json` | full mode Phase 4/6 |
+| `../_shared/contracts/writer/full.json` | Phase 4 |
+| `../_shared/contracts/evaluator/full.json` | Phase 6 |
 
 **Related skills:**
 - Upstream → `deep-research` (receives RQ Brief + Bibliography + Synthesis via auto-detected handoff in @intake)

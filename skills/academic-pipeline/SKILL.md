@@ -1,10 +1,21 @@
+---
+name: academic-pipeline
+description: "End-to-end academic research pipeline orchestrator. Detects the user's current stage, recommends modes, and dispatches deep-research / academic-paper / academic-paper-reviewer at the right moments, enforcing blocking integrity gates at Stages 2.5 and 4.5 and a two-stage review with bounded revision loops. Use for: full research-to-paper pipeline, end-to-end workflow, integrity check, staged review and revision, finalize manuscript."
+license: CC-BY-NC-4.0
+metadata:
+  upstream: "academic-research-skills"
+  author: "Cheng-I Wu"
+  port: "antigravity"
+---
+
+
 # Skill: Academic Pipeline
 
 ## Objective
 
 Orchestrate the full academic research pipeline from topic to finalized manuscript. @orchestrator detects the user's current stage, recommends modes, dispatches `deep-research` / `academic-paper` / `academic-paper-reviewer` at the right moments, and enforces blocking integrity gates at Stages 2.5 and 4.5. The pipeline itself performs no substantive research, writing, or reviewing — it only coordinates, tracks state, and manages quality checkpoints.
 
-Source of truth: `ars/academic-pipeline/WORKFLOW.md` (v3.11.1). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent files only for the active stage.
+Source of truth: `references/UPSTREAM_WORKFLOW.md` (v3.11.1). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent files only for the active stage.
 
 ---
 
@@ -171,24 +182,24 @@ All 8 Iron Rules apply. Pipeline-specific emphasis:
 
 ## Source of Truth
 
-Full protocol: `ars/academic-pipeline/WORKFLOW.md`
+Full protocol: `references/UPSTREAM_WORKFLOW.md`
 
 **Load lazily — read only what the active stage needs:**
 
 | Artifact | When to load |
 |---|---|
-| `ars/academic-pipeline/agents/pipeline_orchestrator_agent.md` | All stages (orchestrator) |
-| `ars/academic-pipeline/agents/state_tracker_agent.md` | All stage transitions |
-| `ars/academic-pipeline/agents/integrity_verification_agent.md` | Stages 2.5 & 4.5 |
-| `ars/academic-pipeline/agents/collaboration_depth_agent.md` | FULL/SLIM checkpoints (advisory) |
-| `ars/academic-pipeline/agents/claim_ref_alignment_audit_agent.md` | Stage 4→5 (opt-in, `ARS_CLAIM_AUDIT=1`) |
-| `ars/shared/agents/compliance_agent.md` | Stages 2.5 & 4.5 |
-| `ars/academic-pipeline/references/pipeline_state_machine.md` | All transitions |
-| `ars/academic-pipeline/references/integrity_review_protocol.md` | Stages 2.5 & 4.5 |
-| `ars/academic-pipeline/references/ai_research_failure_modes.md` | Stages 2.5 & 4.5 (7-mode checklist) |
-| `ars/academic-pipeline/references/two_stage_review_protocol.md` | Stages 3 & 3' |
-| `ars/academic-pipeline/references/process_summary_protocol.md` | Stage 6 |
-| `ars/academic-pipeline/references/reinforcement_content.md` | Stage transitions |
+| `agents/pipeline_orchestrator_agent.md` | All stages (orchestrator) |
+| `agents/state_tracker_agent.md` | All stage transitions |
+| `agents/integrity_verification_agent.md` | Stages 2.5 & 4.5 |
+| `agents/collaboration_depth_agent.md` | FULL/SLIM checkpoints (advisory) |
+| `agents/claim_ref_alignment_audit_agent.md` | Stage 4→5 (opt-in, `ARS_CLAIM_AUDIT=1`) |
+| `../_shared/agents/compliance_agent.md` | Stages 2.5 & 4.5 |
+| `references/pipeline_state_machine.md` | All transitions |
+| `references/integrity_review_protocol.md` | Stages 2.5 & 4.5 |
+| `references/ai_research_failure_modes.md` | Stages 2.5 & 4.5 (7-mode checklist) |
+| `references/two_stage_review_protocol.md` | Stages 3 & 3' |
+| `references/process_summary_protocol.md` | Stage 6 |
+| `references/reinforcement_content.md` | Stage transitions |
 
 Also dispatches (load their entry files when activating):
 - `.agents/skills/deep-research.md` — Stage 1

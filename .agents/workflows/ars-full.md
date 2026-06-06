@@ -6,7 +6,7 @@ description: Full ARS pipeline — research → write → integrity → review �
 
 This workflow runs the complete ARS pipeline end-to-end via @orchestrator. It enforces all Iron Rules, blocking integrity gates, two-stage review with a max of 2 revision loops, and the adaptive checkpoint system. Use this when the user says "take my topic to a finished reviewed paper" or gives an explicit `/ars-full` command.
 
-**Before starting:** load `.agents/skills/academic-pipeline.md` and `/AGENTS.md`. Read the Iron Rules and Anti-Confabulation Guardrails. Read `.agents/skills/orchestration.md` for the full conflict-resolution contract.
+**Before starting:** load `skills/academic-pipeline/SKILL.md` and `/AGENTS.md`. Read the Iron Rules and Anti-Confabulation Guardrails. Read `.agents/docs/orchestration.md` for the full conflict-resolution contract.
 
 ---
 
@@ -40,7 +40,7 @@ Act as @orchestrator and perform intake:
 
 Act as @orchestrator and dispatch `deep-research`:
 
-1. Load `.agents/skills/deep-research.md`. Launch `deep-research` in the selected mode (default: `full` or `socratic`).
+1. Load `skills/deep-research/SKILL.md`. Launch `deep-research` in the selected mode (default: `full` or `socratic`).
 2. Monitor phase completion: Phase 1 (Scoping) → user confirmation → Phases 2–6.
 3. Collect deliverables: RQ Brief + Methodology Blueprint + Annotated Bibliography + Synthesis Report (+ INSIGHT collection if socratic mode).
 4. Act as @state-tracker: record Stage 1 complete + deliverables list.
@@ -67,7 +67,7 @@ Wait for user confirmation.
 
 Act as @orchestrator and dispatch `academic-paper`:
 
-1. Load `.agents/skills/academic-paper.md`. Pass Stage 1 deliverables to @intake (auto-detected; @intake skips redundant phases when materials are present). Launch in `plan` or `full` mode per user choice.
+1. Load `skills/academic-paper/SKILL.md`. Pass Stage 1 deliverables to @intake (auto-detected; @intake skips redundant phases when materials are present). Launch in `plan` or `full` mode per user choice.
 2. Monitor all 8 phases (0 → 7). Enforce the v3.6.6 Generator-Evaluator contract on Phase 4/6 in `full` mode.
 3. Collect deliverable: complete paper draft.
 4. Act as @state-tracker: record Stage 2 complete.
@@ -98,9 +98,9 @@ Wait for user confirmation.
 
 Act as @orchestrator and dispatch @integrity-verification. This is a **MANDATORY** checkpoint — cannot be auto-skipped.
 
-1. Load `ars/academic-pipeline/agents/integrity_verification_agent.md`. Run 5-phase verification: references → citation context → statistical data → originality → claims.
-2. Also run @compliance (PRISMA-trAIce + RAISE, mode-aware block semantics). Load `ars/shared/agents/compliance_agent.md`.
-3. Run the **7-mode AI Research Failure Mode Checklist** (load `ars/academic-pipeline/references/ai_research_failure_modes.md`). If any mode is `SUSPECTED`, or Modes 1/3/5/6 are `INSUFFICIENT EVIDENCE`, **block the pipeline** and present the issue to the user. The user must confirm / override with reasoning / revise. There is no `--no-block` escape.
+1. Load `skills/academic-pipeline/agents/integrity_verification_agent.md`. Run 5-phase verification: references → citation context → statistical data → originality → claims.
+2. Also run @compliance (PRISMA-trAIce + RAISE, mode-aware block semantics). Load `skills/_shared/agents/compliance_agent.md`.
+3. Run the **7-mode AI Research Failure Mode Checklist** (load `skills/academic-pipeline/references/ai_research_failure_modes.md`). If any mode is `SUSPECTED`, or Modes 1/3/5/6 are `INSUFFICIENT EVIDENCE`, **block the pipeline** and present the issue to the user. The user must confirm / override with reasoning / revise. There is no `--no-block` escape.
 4. On FAIL: fix and re-verify; max 3 correction rounds. If still failing after 3 rounds, list unverifiable items; user decides whether to continue.
 5. On PASS: act as @state-tracker and record integrity verdict.
 
@@ -123,7 +123,7 @@ Wait for explicit user confirmation before Stage 3.
 
 Act as @orchestrator and dispatch `academic-paper-reviewer`:
 
-1. Load `.agents/skills/academic-paper-reviewer.md`. Pass verified paper. Launch in `full` mode (5-panel: EIC + R1 + R2 + R3 + Devil's Advocate).
+1. Load `skills/academic-paper-reviewer/SKILL.md`. Pass verified paper. Launch in `full` mode (5-panel: EIC + R1 + R2 + R3 + Devil's Advocate).
 2. Enforce Phase 0: @field-analyst configures 5 reviewers; present Reviewer Configuration to user; wait for confirmation or adjustments.
 3. Enforce Phase 1 independence: all 5 reviewers run with **no cross-referencing** (Iron Rule 2). If any reviewer agent attempts to read another's draft, stop and redirect.
 4. Enforce Phase 2: @editorial-synthesizer sees all reports; builds cross-reviewer matrix; resolves severity precedence; DA CRITICAL findings block "Accept" (Iron Rule 4).
@@ -153,7 +153,7 @@ Wait for explicit user confirmation.
 
 Act as @orchestrator and dispatch `academic-paper` revision mode:
 
-1. Load `.agents/skills/academic-paper.md`. Pass Revision Roadmap as input to @draft-writer (revision mode). Every roadmap item must be addressed; use R&R tracking table.
+1. Load `skills/academic-paper/SKILL.md`. Pass Revision Roadmap as input to @draft-writer (revision mode). Every roadmap item must be addressed; use R&R tracking table.
 2. Iron Rule 5 applies: @peer-reviewer is READ-ONLY; it does not rewrite the paper during the in-pair review cycle.
 3. Collect deliverables: Revised Draft + Response to Reviewers document.
 4. Act as @state-tracker: record Stage 4 complete + revision loop count (1 of max 2).
@@ -182,7 +182,7 @@ Wait for user confirmation.
 
 Act as @orchestrator and dispatch `academic-paper-reviewer` re-review mode:
 
-1. Load `.agents/skills/academic-paper-reviewer.md`. Pass: original Revision Roadmap + Revised Draft + Response to Reviewers. Launch `re-review` mode.
+1. Load `skills/academic-paper-reviewer/SKILL.md`. Pass: original Revision Roadmap + Revised Draft + Response to Reviewers. Launch `re-review` mode.
 2. @eic + @editorial-synthesizer verify each roadmap item against the revised manuscript. Every item is independently verified — rubber-stamp approval is an anti-pattern.
 3. Collect deliverables: Traceability Matrix (Schema 11) + new Decision + Residual Issues list.
 
@@ -232,7 +232,7 @@ Proceeding to Stage 4.5 (FINAL INTEGRITY).
 
 Act as @orchestrator and dispatch @integrity-verification. This is a **MANDATORY** checkpoint — cannot be auto-skipped.
 
-1. Load `ars/academic-pipeline/agents/integrity_verification_agent.md`. Run 5-phase verification **from scratch independently** — do not re-check only Stage 2.5 findings. Revision may have introduced new issues.
+1. Load `skills/academic-pipeline/agents/integrity_verification_agent.md`. Run 5-phase verification **from scratch independently** — do not re-check only Stage 2.5 findings. Revision may have introduced new issues.
 2. Also run @compliance (PRISMA-trAIce + RAISE).
 3. Also run the 7-mode AI Research Failure Mode Checklist.
 4. **Stage 4.5 must achieve zero-issue PASS to proceed to Stage 5.** On FAIL: fix and re-verify (max 3 rounds).
@@ -257,7 +257,7 @@ Wait for explicit user confirmation. Only proceed on zero-issue PASS.
 Act as @orchestrator and dispatch `academic-paper` format-convert mode:
 
 1. Ask user which academic formatting style (APA 7.0 / Chicago / IEEE / etc.).
-2. Load `.agents/skills/academic-paper.md`. Dispatch @formatter.
+2. Load `skills/academic-paper/SKILL.md`. Dispatch @formatter.
 3. Output sequence:
    - Step 1: Produce Markdown draft.
    - Step 2: Generate DOCX via Pandoc when available (otherwise provide conversion instructions).
@@ -292,7 +292,7 @@ Act as @orchestrator:
 
 ## Conflict Resolution
 
-When any two personas disagree during this workflow, resolve per `.agents/skills/orchestration.md` §5:
+When any two personas disagree during this workflow, resolve per `.agents/docs/orchestration.md` §5:
 
 1. Iron Rules win over style / brevity.
 2. Higher severity wins; ties break by ordinal position.
@@ -301,7 +301,7 @@ When any two personas disagree during this workflow, resolve per `.agents/skills
 
 ## Graceful Degradation
 
-On any tool unavailability, follow `.agents/skills/orchestration.md` §6:
+On any tool unavailability, follow `.agents/docs/orchestration.md` §6:
 - Emit `[MCP UNAVAILABLE: <tool>]` before the affected phase.
 - Never simulate a tool's output.
 - Log all degradations for Stage 6 Process Summary.

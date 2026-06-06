@@ -6,7 +6,7 @@ description: Dispatch the 7-persona academic-paper-reviewer panel for full peer 
 
 This workflow dispatches the `academic-paper-reviewer` 7-agent panel. Reviewers operate with strict independence — no reviewer sees another's draft before completing its own (Iron Rule 2). The Devil's Advocate CRITICAL findings unconditionally block an "Accept" decision (Iron Rule 4).
 
-**Before starting:** load `.agents/skills/academic-paper-reviewer.md` and `/AGENTS.md`. Confirm mode before Phase 0.
+**Before starting:** load `skills/academic-paper-reviewer/SKILL.md` and `/AGENTS.md`. Confirm mode before Phase 0.
 
 ---
 
@@ -49,7 +49,7 @@ Confirm mode with user. For `re-review`, confirm that both the original Revision
 
 Output: **5 Reviewer Configuration Cards**.
 
-Load `ars/academic-paper-reviewer/agents/field_analyst_agent.md`.
+Load `skills/academic-paper-reviewer/agents/field_analyst_agent.md`.
 
 **[CONFIRMATION — MANDATORY after Phase 0]:**
 
@@ -90,7 +90,7 @@ Act as @eic and produce the EIC Review:
 Phase 1a (paper-blind): confirm understanding of acceptance criteria.
 Phase 2a (paper-visible): full review + scoring.
 
-Load `ars/academic-paper-reviewer/agents/eic_agent.md`.
+Load `skills/academic-paper-reviewer/agents/eic_agent.md`.
 
 ### @methodology-reviewer — Methodology Review
 
@@ -104,7 +104,7 @@ Act as @methodology-reviewer and produce the Methodology Review Card:
 Phase 1a (paper-blind): commit to scoring plan for each methodology dimension.
 Phase 2a (paper-visible): full review + dimensional scoring.
 
-Load `ars/academic-paper-reviewer/agents/methodology_reviewer_agent.md`.
+Load `skills/academic-paper-reviewer/agents/methodology_reviewer_agent.md`.
 
 ### @domain-reviewer — Domain Review
 
@@ -114,7 +114,7 @@ Act as @domain-reviewer and produce the Domain Review Card:
 - Accuracy of academic argument within the field.
 - Incremental contribution: what does this paper add that is not already known?
 
-Load `ars/academic-paper-reviewer/agents/domain_reviewer_agent.md`.
+Load `skills/academic-paper-reviewer/agents/domain_reviewer_agent.md`.
 
 ### @perspective-reviewer — Perspective Review
 
@@ -124,7 +124,7 @@ Act as @perspective-reviewer and produce the Perspective Review Card:
 - Broader social or ethical implications.
 - Alternative interpretation paths the paper hasn't considered.
 
-Load `ars/academic-paper-reviewer/agents/perspective_reviewer_agent.md`.
+Load `skills/academic-paper-reviewer/agents/perspective_reviewer_agent.md`.
 
 ### @devils-advocate — Devil's Advocate Report
 
@@ -145,7 +145,7 @@ Anti-sycophancy: scores its own rebuttals 1–5; does not concede below 4/5.
 
 ⚠️ **IRON RULE: DA CRITICAL findings block "Accept." This cannot be overridden by majority vote, by EIC preference, or by any other reviewer. The DA report cannot be omitted or softened.**
 
-Load `ars/academic-paper-reviewer/agents/devils_advocate_reviewer_agent.md`.
+Load `skills/academic-paper-reviewer/agents/devils_advocate_reviewer_agent.md`.
 
 ---
 
@@ -168,7 +168,7 @@ Output sections (fixed order):
 
 ⚠️ **IRON RULE: DA CRITICAL issues are specially flagged in the Decision Letter. Decision cannot be "Accept" when DA CRITICAL issues are present (Iron Rule 4).**
 
-Load `ars/academic-paper-reviewer/agents/editorial_synthesizer_agent.md`.
+Load `skills/academic-paper-reviewer/agents/editorial_synthesizer_agent.md`.
 
 **[CHECKPOINT — MANDATORY after Phase 2]:**
 
@@ -217,7 +217,7 @@ Output: EIC quick assessment + key issues list (~15 min version). No full panel.
 
 ### methodology-focus mode
 Agents: @field-analyst + @eic + @methodology-reviewer (2-reviewer panel per v3.6.2 methodology_focus contract).
-Load `ars/shared/contracts/reviewer/methodology_focus.json`.
+Load `skills/_shared/contracts/reviewer/methodology_focus.json`.
 
 ### guided mode
 All 7 agents + Socratic dialogue layer.

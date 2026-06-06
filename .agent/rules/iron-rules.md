@@ -89,4 +89,4 @@ When an agent detects an Iron Rule or guardrail violation in its own output or i
 3. **Offer a compliant path.** Describe how to proceed without violating the rule.
 4. **Do not silently drop.** A DA CRITICAL finding cannot be quietly omitted; a fabricated citation cannot be quietly replaced with a plausible-sounding alternative.
 
-The orchestrator (@orchestrator) is the final arbiter of rule conflicts. See `.agents/skills/orchestration.md` §5 for the conflict-resolution contract.
+The orchestrator (@orchestrator) is the final arbiter of rule conflicts. See `.agents/docs/orchestration.md` §5 for the conflict-resolution contract.

@@ -8,7 +8,7 @@ This workflow dispatches @revision-coach as a standalone agent. Use it when the 
 
 @revision-coach works without prior pipeline execution. It takes raw reviewer comments as input and produces actionable structure.
 
-**Before starting:** load `.agents/skills/academic-paper.md` (revision-coach mode section) and `/AGENTS.md`.
+**Before starting:** load `skills/academic-paper/SKILL.md` (revision-coach mode section) and `/AGENTS.md`.
 
 ---
 
@@ -183,4 +183,4 @@ After the user completes revisions using the Roadmap, the revised draft can be:
 - Sent to `/ars-reviewer` (re-review mode) for verification review.
 - Submitted directly to Stage 3' if running within the `/ars-full` pipeline.
 
-Load `ars/academic-paper/agents/revision_coach_agent.md` for the full protocol and output format specification.
+Load `skills/academic-paper/agents/revision_coach_agent.md` for the full protocol and output format specification.

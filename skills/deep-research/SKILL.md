@@ -1,10 +1,21 @@
+---
+name: deep-research
+description: "Deep academic research engine. Turn a topic or vague question into verified, synthesized, fact-checked findings as a full APA 7.0 report. 14 specialist agents: research question formulation, methodology design, systematic literature search, source verification, cross-source synthesis, meta-analysis, risk-of-bias (RoB 2 / ROBINS-I), editorial review, ethics gate, Socratic guidance. Use for: deep research, literature review, systematic review, meta-analysis, fact-check, research question refinement, evidence grading, PRISMA reviews."
+license: CC-BY-NC-4.0
+metadata:
+  upstream: "academic-research-skills"
+  author: "Cheng-I Wu"
+  port: "antigravity"
+---
+
+
 # Skill: Deep Research
 
 ## Objective
 
 Turn a topic or research question into verified, synthesized, fact-checked findings — delivered as a full APA 7.0 academic report. Domain-agnostic; 14 specialist agents cover the entire investigation pipeline from question formulation through systematic literature search, cross-source synthesis, bias assessment, meta-analysis, editorial review, ethics gate, and optional post-pipeline monitoring.
 
-Source of truth: `ars/deep-research/WORKFLOW.md` (v2.9.4). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent and reference files only for the active phase.
+Source of truth: `references/UPSTREAM_WORKFLOW.md` (v2.9.4). This file is the **Antigravity entry point** — a lazy-loading router. Load it first; load agent and reference files only for the active phase.
 
 ---
 
@@ -112,31 +123,31 @@ Dispatch this skill when the user intent matches any of the following:
 
 ## Source of Truth
 
-Full protocol: `ars/deep-research/WORKFLOW.md`
+Full protocol: `references/UPSTREAM_WORKFLOW.md`
 
 **Load lazily — read only what the active phase needs:**
 
 | Artifact | When to load |
 |---|---|
-| `ars/deep-research/agents/research_question_agent.md` | Phase 1 |
-| `ars/deep-research/agents/research_architect_agent.md` | Phase 1 |
-| `ars/deep-research/agents/bibliography_agent.md` | Phase 2 |
-| `ars/deep-research/agents/source_verification_agent.md` | Phase 2 |
-| `ars/deep-research/agents/timeline_extraction_agent.md` | Phase 2 |
-| `ars/deep-research/agents/synthesis_agent.md` | Phase 3 |
-| `ars/deep-research/agents/risk_of_bias_agent.md` | Phase 2, systematic-review mode |
-| `ars/deep-research/agents/meta_analysis_agent.md` | Phase 3, systematic-review mode |
-| `ars/deep-research/agents/report_compiler_agent.md` | Phases 4 & 6 |
-| `ars/deep-research/agents/editor_in_chief_agent.md` | Phase 5 |
-| `ars/deep-research/agents/ethics_review_agent.md` | Phase 5 |
-| `ars/deep-research/agents/devils_advocate_agent.md` | Phases 1, 3, 5 checkpoints |
-| `ars/deep-research/agents/socratic_mentor_agent.md` | socratic mode |
-| `ars/deep-research/agents/monitoring_agent.md` | Post-pipeline, optional |
-| `ars/deep-research/references/socratic_mode_protocol.md` | socratic mode |
-| `ars/deep-research/references/systematic_review_protocol.md` | systematic-review mode |
-| `ars/deep-research/references/source_quality_hierarchy.md` | Phase 2 |
-| `ars/deep-research/references/logical_fallacies.md` | DA checkpoints |
-| `ars/deep-research/references/failure_paths.md` | All phases (error recovery) |
+| `agents/research_question_agent.md` | Phase 1 |
+| `agents/research_architect_agent.md` | Phase 1 |
+| `agents/bibliography_agent.md` | Phase 2 |
+| `agents/source_verification_agent.md` | Phase 2 |
+| `agents/timeline_extraction_agent.md` | Phase 2 |
+| `agents/synthesis_agent.md` | Phase 3 |
+| `agents/risk_of_bias_agent.md` | Phase 2, systematic-review mode |
+| `agents/meta_analysis_agent.md` | Phase 3, systematic-review mode |
+| `agents/report_compiler_agent.md` | Phases 4 & 6 |
+| `agents/editor_in_chief_agent.md` | Phase 5 |
+| `agents/ethics_review_agent.md` | Phase 5 |
+| `agents/devils_advocate_agent.md` | Phases 1, 3, 5 checkpoints |
+| `agents/socratic_mentor_agent.md` | socratic mode |
+| `agents/monitoring_agent.md` | Post-pipeline, optional |
+| `references/socratic_mode_protocol.md` | socratic mode |
+| `references/systematic_review_protocol.md` | systematic-review mode |
+| `references/source_quality_hierarchy.md` | Phase 2 |
+| `references/logical_fallacies.md` | DA checkpoints |
+| `references/failure_paths.md` | All phases (error recovery) |
 
 **Related skills:**
 - Downstream → `academic-paper` (handoff: RQ Brief + Bibliography + Synthesis + optional INSIGHT collection)

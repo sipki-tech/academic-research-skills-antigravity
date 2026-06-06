@@ -23,7 +23,7 @@ team of specialist agents coordinated by an orchestrator.
 | `shared` | compliance + contracts | PRISMA-trAIce / RAISE compliance, handoff schemas, sprint contracts |
 
 Persona definitions live in **`.agents/agents.md`**. Slash-command orchestrators live in **`.agents/workflows/`**.
-Gemini-optimized skill entry points and the full vendored ARS source live in **`.agents/skills/`**.
+Gemini-optimized skill entry points (`SKILL.md`) and the bundled upstream ARS source (`agents/`, `references/`, `templates/`) live under **`skills/<name>/`** — installable via `npx skills` and read natively when the repo is opened as an Antigravity workspace.
 
 ---
 
@@ -41,13 +41,13 @@ Classify the user's request, then dispatch:
 
 | User intent | Workflow | Read first |
 |---|---|---|
-| Deep research, lit review, systematic review, meta-analysis, fact-check, RQ refinement | `deep-research` | `.agents/skills/deep-research.md` |
-| Paper writing, outline, abstract, revision, citation formatting, AI disclosure | `academic-paper` | `.agents/skills/academic-paper.md` |
-| Peer review, editorial decision, reviewer calibration, re-review | `academic-paper-reviewer` | `.agents/skills/academic-paper-reviewer.md` |
-| Full research-to-paper pipeline with integrity gates | `academic-pipeline` | `.agents/skills/academic-pipeline.md` |
+| Deep research, lit review, systematic review, meta-analysis, fact-check, RQ refinement | `deep-research` | `skills/deep-research/SKILL.md` |
+| Paper writing, outline, abstract, revision, citation formatting, AI disclosure | `academic-paper` | `skills/academic-paper/SKILL.md` |
+| Peer review, editorial decision, reviewer calibration, re-review | `academic-paper-reviewer` | `skills/academic-paper-reviewer/SKILL.md` |
+| Full research-to-paper pipeline with integrity gates | `academic-pipeline` | `skills/academic-pipeline/SKILL.md` |
 
 **Lazy loading:** Do NOT load the whole suite at once. Read the one skill entry file for the chosen workflow, then load only the
-agent / reference / template files that the current stage needs. The vendored upstream content under `.agents/skills/ars/` is the
+agent / reference / template files that the current stage needs. The bundled upstream content under each `skills/<name>/` directory is the
 source of truth for detailed protocols.
 
 ---
@@ -129,13 +129,13 @@ Antigravity's Manager Surface spawns and observes multiple agents asynchronously
   paragraph the Methodology reviewer wants kept for reproducibility), resolve by severity precedence and Iron Rules — integrity and
   reproducibility outrank brevity; Devil's Advocate CRITICALs are never silently dropped.
 
-See `.agents/skills/orchestration.md` for the full decomposition / delegation / conflict-resolution contract.
+See `.agents/docs/orchestration.md` for the full decomposition / delegation / conflict-resolution contract.
 
 ---
 
 ## MCP Tools
 
-This edition delegates routine researcher actions to MCP servers. See `mcp_config.example.json` and `.agents/skills/mcp-integration.md`.
+This edition delegates routine researcher actions to MCP servers. See `mcp_config.example.json` and `.agents/docs/mcp-integration.md`.
 
 - **Reference manager MCP (Zotero / Mendeley)** — pull BibTeX, resolve citation keys, assemble the final bibliography.
 - **Filesystem MCP** — create `.tex` / `.md` / `.docx` draft artifacts directly in the working directory.
